@@ -1,0 +1,11 @@
+***************Instruction to run the program***************
+javac integrityVerifier.java
+java integrityVerifier
+
+***************Working parts***************
+1. Balanced search tree and Huffman tree are both working correctly.
+2. If you need help, please click on "help button" in the program.
+
+***************Minor pitfalls***************
+Currently "open button" in the program only works with input files that are within the directory 'project-final'. If you need to use input files from other directories, please input the file directory manully. For instance, to go to a file "1a_clean.txt" in a directory named "BST" outside folder, use "../BST/1a_clean.txt".
+
