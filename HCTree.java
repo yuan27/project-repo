@@ -20,20 +20,14 @@ public class HCTree{
     final boolean printOCCTable=false;
     final boolean printHuffTree=false;
     
-    /*3 LOCATIONS TO CHANGE IN SIMPLE VERSION
-     * 1. in main, change the filename;
-     * 2. above, change NOZERO=true;
-     * 3. in reconstructTree(), change HMAC;
-     */
-    
     
     public static void main(String[] args){
         //construct a tree
-        HCTree hct=new HCTree("HCT/huff_test_mssg.txt","HCT/test_key.txt");
-        System.out.println(hct.getBFSTree());
+        /*HCTree hct=new HCTree("HCT/huff_test_mssg.txt","HCT/test_key.txt");
+        System.out.println(hct.getBFSTree());*/
         //test a tree
         /*HCTree hct=new HCTree("HCT/1b_dirty.txt","HCT/test_key.txt",true);
-         System.out.println(hct.getResult());*/
+        System.out.println(hct.getResult());*/
         /*HCTree hct=new HCTree("HC_clean_t.txt","HCT/test_key.txt",true);
          System.out.println(hct.getResult());*/
     }
@@ -143,12 +137,12 @@ public class HCTree{
     /*********************************for partB use*********************************/ 
     public String getResult(){
         if(intres==1){
-            return "Modified.";
+            return "Modified.\n\n"+"Decompressed Message:\n"+msg;
             
         }else if(intres==0){
-            return "Unmodified.";
+            return "Unmodified.\n\n"+"Decompressed Message:\n"+msg;
         }
-        return "Modified.";     
+        return "Modified.\n\n"+"Decompressed Message:\n"+msg;     
     }
     
     public HCTree(String treeFile,String keyFile,boolean dummy){
