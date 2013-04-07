@@ -246,9 +246,9 @@ public class integrityVerifier extends JFrame implements ActionListener{
                 ver_outFile=ver_outFileTextField.getText();
                 if(ver_outFile.length()!=0){
                     printStringToFile(res,ver_outFile);
-                    _upTextarea.setText("Tree is successfully constructed.\nPlease look at the output file and textfield below to see the result.");
+                    _upTextarea.setText("Tree is successfully verified.\nPlease look at the output file and textfield below to see the result.");
                 }else{
-                    _upTextarea.setText("Tree is successfully constructed.\nPlease look at the textfield below to see the result.\n");
+                    _upTextarea.setText("Tree is successfully verified.\nPlease look at the textfield below to see the result.\n");
                 }
             }else if(mode==2){
                 HCTree hct=new HCTree(ver_treeFile, ver_keyFile,true);
@@ -258,9 +258,9 @@ public class integrityVerifier extends JFrame implements ActionListener{
                 ver_outFile=ver_outFileTextField.getText();
                 if(ver_outFile.length()!=0){
                     printStringToFile(res,ver_outFile);
-                    _upTextarea.setText("Tree is successfully constructed.\nPlease look at the output file and textfield below to see the result.");
+                    _upTextarea.setText("Tree is successfully verified.\nPlease look at the output file and textfield below to see the result.");
                 }else{
-                    _upTextarea.setText("Tree is successfully constructed.\nPlease look at the textfield below to see the result.\n");
+                    _upTextarea.setText("Tree is successfully verified.\nPlease look at the textfield below to see the result.\n");
                 }
             }else if(mode==3){
                 BSTree bst=new BSTree(ver_treeFile, ver_keyFile, true);
@@ -270,9 +270,9 @@ public class integrityVerifier extends JFrame implements ActionListener{
                 ver_outFile=ver_outFileTextField.getText();
                 if(ver_outFile.length()!=0){
                     printStringToFile(res,ver_outFile);
-                    _upTextarea.setText("Tree is successfully constructed.\nPlease look at the output file and textfield below to see the result.");
+                    _upTextarea.setText("Tree is successfully verified.\nPlease look at the output file and textfield below to see the result.");
                 }else{
-                    _upTextarea.setText("Tree is successfully constructed.\nPlease look at the textfield below to see the result.\n");
+                    _upTextarea.setText("Tree is successfully verified.\nPlease look at the textfield below to see the result.\n");
                 }
                 
             }

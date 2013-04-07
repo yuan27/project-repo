@@ -19,6 +19,7 @@ public class BSTree{
     BCoder bc;
     
     //results
+    int k=0;
     boolean modified=false;
     int respin=-1000;//part2
     
@@ -40,8 +41,12 @@ public class BSTree{
         System.out.print(bst1.getBFSTree());*/
         
         //test a file
-        BSTree bst=new BSTree("BST/2_dirty.txt", "BST/test_key.txt", true);
+        BSTree bst=new BSTree("BST/2_clean.txt", "BST/test_key.txt", true);
         System.out.println(bst.getResult(true));
+        //bst.printTree(bst.root);
+        /*for(int i=0;i<4096;i++){
+            System.out.print(bst.msg[i]+" ");
+        }*/
         
     }
     
@@ -51,7 +56,7 @@ public class BSTree{
             return (modified)?"Modified.":"Unmodified.";
         }else{
             if(respin>0)
-                return "Number modified: "+msg[respin-1]+".\nIndex of the number:(starting from 0) "+(respin-1)+".\n";
+                return "Number modified: "+msg[respin-1]+".\nIndex of the number(starting from 0): "+(respin-1)+".\n";
             else if (respin==0)
                 return "Unmodified.";
             else
@@ -180,6 +185,7 @@ public class BSTree{
             if(sub1.equals(sub2)){
                 return 0;
             }
+            
            
             return pinpoint(mark,correct_mark);
         }
@@ -198,7 +204,6 @@ public class BSTree{
                 val+=1<<(i-1);
             }
         }
-
         return val;
     }
     
@@ -212,21 +217,20 @@ public class BSTree{
         list.add(root);
         Node node;
         int count=0,maxcount=treeStructure.length()-1,childNum=0;
-        while(count<=maxcount){
+        while(list.size()>0){
             node=list.getFirst();
-            if(treeStructure.charAt(count)=='1'){//is a parent
+            if(treeStructure.charAt(count++)=='1'){//is a parent
                 node.isLeaf=false;
-                Node left=new Node(0,1,node);
-                Node right=new Node(0,1,node);
+                Node left=new Node(-1000,20000,node);
+                Node right=new Node(-1000,20000,node);
                 node.left=left;node.right=right;
                 list.addLast(left);list.addLast(right);
             }else{//is a child
                 node.isLeaf=true;
                 node.value=values[(childNum++)%values_len];
-                node.low=node.upp=789;
+                node.low=node.upp=20000;
             }
             list.removeFirst();
-            count++;
         }
         if(values_len!=bc.numberOfZero(treeStructure)){
             return false;
@@ -234,37 +238,8 @@ public class BSTree{
         return true;
     }
     
-    public void reconstructTreeFromTriplet(){
-        //construct array list to get index for a specific item
-        int len=msg.length;
-        ArrayList<Integer> intlist=new ArrayList<Integer>(len);
-        for(int i=0;i<len;i++){
-            intlist.add(new Integer(msg[i]));
-        }
-        
-        LinkedList<Node> list=new LinkedList<Node>();
-        list.add(root);
-        Node node;
-        int count=0,maxcount=len-1;
-        while(list.size()>0){
-            node=list.getFirst();
-            if(node.isLeaf){//is a child
-                node.low=intlist.indexOf(node.value);
-                
-                node.upp=node.low;
-            }else{
-                list.add(node.left);
-                list.add(node.right);
-            }
-            list.removeFirst();
-            count++;
-        }
-        
-    }
-    
     
     public void buildNonLeafNodes(){
-        reconstructTreeFromTriplet();
         
         if(root==null)return;
         
@@ -297,6 +272,8 @@ public class BSTree{
                     }
                     node.value=curr.value;
                     node.splitLoc=curr.low;
+                }else{
+                    System.out.println("Something went wrong..\n");
                 }
             }
             if(node.left!=null)list.addLast(node.left);
@@ -396,6 +373,7 @@ public class BSTree{
     public int[] goOverNode(Node node){
         if(node==null)return null;
         if(node.left==null && node.right==null){
+            node.upp=node.low=k;k++;
             int[] arr=new int[1];arr[0]=node.value;
             return arr;
         }
@@ -415,15 +393,13 @@ public class BSTree{
             arr[len1+i]=arr2[i];
         }
         return arr;
-        
-        
     }
     
     //DEBUGGING FUNCTION
     public void printTree(Node node){
         if(node==null)
             return;
-        System.out.printf("[%d,%d]\n",node.low,node.upp);
+        System.out.printf("[%d,%d,%d]\n",node.low,node.upp,node.value);
         System.out.println("LEFT:\n");
         printTree(node.left);
         System.out.println("RIGHT:\n");
